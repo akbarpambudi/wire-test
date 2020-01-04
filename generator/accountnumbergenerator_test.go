@@ -6,8 +6,11 @@ import (
 )
 
 func TestGeneratorShouldValueWithRightFormat(t *testing.T) {
-
-	accountNumberGenerator := generator.NewAccountNumberGenerator("1101", 6)
+	config := generator.AccountNumberGeneratorConfig{
+		Prefix:  "1101",
+		Padding: 6,
+	}
+	accountNumberGenerator := generator.NewAccountNumberGenerator(config)
 	accountNumber, err := accountNumberGenerator.Next()
 	if err != nil {
 		t.Error(err)
@@ -18,8 +21,11 @@ func TestGeneratorShouldValueWithRightFormat(t *testing.T) {
 }
 
 func TestGeneratorIncreaseGeneratedValue(t *testing.T) {
-
-	accountNumberGenerator := generator.NewAccountNumberGenerator("1101", 6)
+	config := generator.AccountNumberGeneratorConfig{
+		Prefix:  "1101",
+		Padding: 6,
+	}
+	accountNumberGenerator := generator.NewAccountNumberGenerator(config)
 	accountNumber, err := accountNumberGenerator.Next()
 	if err != nil {
 		t.Error(err)

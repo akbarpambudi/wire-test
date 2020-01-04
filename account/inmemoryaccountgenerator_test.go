@@ -8,7 +8,11 @@ import (
 )
 
 func TestAccountGeneratorShouldGenerateAccount(t *testing.T) {
-	generator := generator.NewAccountNumberGenerator("123", 6)
+	config := generator.AccountNumberGeneratorConfig{
+		Prefix:  "123",
+		Padding: 6,
+	}
+	generator := generator.NewAccountNumberGenerator(config)
 	accountGenerator := account.NewInMemoryAccountGenerator(generator)
 	account, err := accountGenerator.GenerateAccount()
 	if err != nil {

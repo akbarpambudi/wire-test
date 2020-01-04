@@ -18,6 +18,11 @@ func (ag *AccountNumberGenerator) increaseCounter() {
 	ag.counter++
 }
 
-func NewAccountNumberGenerator(prefix string, padding int) *AccountNumberGenerator {
-	return &AccountNumberGenerator{prefix: prefix, padding: padding, counter: 0}
+type AccountNumberGeneratorConfig struct {
+	Prefix  string
+	Padding int
+}
+
+func NewAccountNumberGenerator(config AccountNumberGeneratorConfig) *AccountNumberGenerator {
+	return &AccountNumberGenerator{prefix: config.Prefix, padding: config.Padding, counter: 0}
 }
