@@ -5,20 +5,22 @@ import (
 	"testing"
 	"wiretest/account"
 	"wiretest/generator"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestAccountGeneratorShouldGenerateAccount(t *testing.T) {
-	config := generator.AccountNumberGeneratorConfig{
-		Prefix:  "123",
-		Padding: 6,
-	}
-	generator := generator.NewAccountNumberGenerator(config)
+	expectedAccountNumber := "12300001"
+	expectedBalance := big.NewInt(0)
+	generator := generator.NewMockGenerator()
+	generator.On("Next").Return(expectedAccountNumber, nil)
 	accountGenerator := account.NewInMemoryAccountGenerator(generator)
+
 	account, err := accountGenerator.GenerateAccount()
+
 	if err != nil {
 		t.Error(err)
 	}
-	if account.AccountNumber != "123000001" || account.Balance.Cmp(big.NewInt(0)) != 0 {
-		t.Errorf("account number expected to be 123000001 and balance expected to be 0, but actual account number was %s and actual balance was %s", account.AccountNumber, account.Balance.String())
-	}
+	assert.Equal(t, account.AccountNumber, expectedAccountNumber)
+	assert.Equal(t, account.Balance, expectedBalance)
 }

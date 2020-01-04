@@ -1,4 +1,4 @@
-// Copyright 2018 The Wire Authors
+// Copyright 2018 Akbar Rizqi
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,5 +26,10 @@ import (
 
 func InitializeAccountGenerator() (account.AccountGenerator, error) {
 	wire.Build(provider.ProvideAccountGenerator, provider.ProvideAccountNumberGenerator, provider.ProvideAccountNumberGeneratorConfig)
+	return &account.InMemoryAccountGenerator{}, nil
+}
+
+func InitializeStubbedAccountGenerator() (account.AccountGenerator, error) {
+	wire.Build(provider.ProvideAccountGenerator, provider.ProvideMockAccountNumberGenerator)
 	return &account.InMemoryAccountGenerator{}, nil
 }

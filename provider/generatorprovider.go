@@ -12,3 +12,7 @@ func ProvideAccountNumberGeneratorConfig() generator.AccountNumberGeneratorConfi
 func ProvideAccountNumberGenerator(config generator.AccountNumberGeneratorConfig) generator.Generator {
 	return generator.NewAccountNumberGenerator(config)
 }
+
+func ProvideMockAccountNumberGenerator() generator.Generator {
+	return generator.NewMockGenerator()
+}

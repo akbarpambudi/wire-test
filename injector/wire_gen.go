@@ -18,3 +18,9 @@ func InitializeAccountGenerator() (account.AccountGenerator, error) {
 	accountGenerator := provider.ProvideAccountGenerator(generator)
 	return accountGenerator, nil
 }
+
+func InitializeStubbedAccountGenerator() (account.AccountGenerator, error) {
+	generator := provider.ProvideMockAccountNumberGenerator()
+	accountGenerator := provider.ProvideAccountGenerator(generator)
+	return accountGenerator, nil
+}
