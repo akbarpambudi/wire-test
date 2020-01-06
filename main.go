@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	accountGenerator, err := injector.InitializeAccountGenerator()
+	accountGenerator := injector.InitializeAccountGenerator()
+	account, err := accountGenerator.GenerateAccount()
 	if err != nil {
 		panic(err)
 	}
-	account, err := accountGenerator.GenerateAccount()
 	fmt.Println(account.AccountNumber)
 }

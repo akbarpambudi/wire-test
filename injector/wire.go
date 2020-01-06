@@ -24,12 +24,10 @@ import (
 	"github.com/google/wire"
 )
 
-func InitializeAccountGenerator() (account.AccountGenerator, error) {
-	wire.Build(provider.ProvideAccountGenerator, provider.ProvideAccountNumberGenerator, provider.ProvideAccountNumberGeneratorConfig)
-	return &account.InMemoryAccountGenerator{}, nil
+func InitializeAccountGenerator() account.AccountGenerator {
+	panic(wire.Build(provider.ProvideAccountGenerator, provider.ProvideAccountNumberGenerator, provider.ProvideAccountNumberGeneratorConfig))
 }
 
-func InitializeStubbedAccountGenerator() (account.AccountGenerator, error) {
-	wire.Build(provider.ProvideAccountGenerator, provider.ProvideMockAccountNumberGenerator)
-	return &account.InMemoryAccountGenerator{}, nil
+func InitializeStubbedAccountGenerator() account.AccountGenerator {
+	panic(wire.Build(provider.ProvideAccountGenerator, provider.ProvideMockAccountNumberGenerator))
 }

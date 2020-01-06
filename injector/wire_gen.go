@@ -12,15 +12,15 @@ import (
 
 // Injectors from wire.go:
 
-func InitializeAccountGenerator() (account.AccountGenerator, error) {
+func InitializeAccountGenerator() account.AccountGenerator {
 	accountNumberGeneratorConfig := provider.ProvideAccountNumberGeneratorConfig()
 	generator := provider.ProvideAccountNumberGenerator(accountNumberGeneratorConfig)
 	accountGenerator := provider.ProvideAccountGenerator(generator)
-	return accountGenerator, nil
+	return accountGenerator
 }
 
-func InitializeStubbedAccountGenerator() (account.AccountGenerator, error) {
+func InitializeStubbedAccountGenerator() account.AccountGenerator {
 	generator := provider.ProvideMockAccountNumberGenerator()
 	accountGenerator := provider.ProvideAccountGenerator(generator)
-	return accountGenerator, nil
+	return accountGenerator
 }
